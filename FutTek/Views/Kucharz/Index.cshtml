@@ -1,0 +1,43 @@
+﻿@using FutTek.Models;
+@model FutTek.ViewModels.NewOrderViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Ordery == null)
+{
+    <h2>Nie masz nowych zamowien</h2>
+}else
+{
+
+    <h2>Lista Zamowien</h2>
+
+
+    <table class="table">
+        <tr>
+            <th>Numer Stolika</th>
+            <th>Potrawa</th>
+            <th>Dostarcz</th>
+        </tr>
+
+
+        @foreach (var item in (List<OrderModels>)ViewBag.Ordery)
+        {
+            if (item.CzyWykonano == false)
+            {
+                <tr>
+                    <td>@item.NumerStolika</td>
+                    <td>@item.Potrawa.Name</td>
+                    @if (item.CzyWykonano == false)
+                    {
+                        <td>@Html.ActionLink("Wyślij", "Wyslij", new { id = item.Id }, new { @class = "btn btn-success" })</td>
+                    }
+                </tr>
+            }
+        }
+
+    </table>
+
+
+}

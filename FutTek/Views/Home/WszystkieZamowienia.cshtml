@@ -1,0 +1,51 @@
+﻿@using FutTek.Models;
+@model List<FutTek.Models.OrderModels>
+
+
+@{
+    ViewBag.Title = "Wszystkie zamowienia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Wszystkie zamowienia</h2>
+
+<table class="table table-bordered table-responsive">
+    <tr>
+        <th>Numer Stolika</th>
+        <th>Potrawa</th>
+        <th>Wykonano</th>
+        <th>Dostarczono</th>
+    </tr>
+
+
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>@item.NumerStolika</td>
+            <td>@item.Potrawa.Name</td>
+            @if (item.CzyWykonano == false)
+            {
+                <td style="background-color : #e6908d; text-align: center; color:azure; font-weight: bold;"> Nie wykonano</td>
+            }
+            else
+            {
+                <td style="background-color : #5cb85c; text-align: center; color:azure; font-weight: bold; margin : 100px ;">Wykonano</td>
+            }
+            @if (item.CzyDostarczono == false)
+            {
+                <td style="background-color : #e6908d; text-align: center; color:azure; font-weight: bold; padding-left: 10px;"> Nie Dostarczono</td>
+            }
+            else
+            {
+                <td style="background-color : #5cb85c; text-align: center; color:azure; font-weight: bold; margin : 0 10px;">Dostarczono</td>
+            }
+
+
+        </tr>
+
+
+    }
+
+    <h2>Suma zamowien: @Model.Count</h2>

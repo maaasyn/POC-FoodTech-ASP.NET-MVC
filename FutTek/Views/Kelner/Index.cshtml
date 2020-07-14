@@ -1,0 +1,73 @@
+﻿@using FutTek.Models;
+@model FutTek.ViewModels.NewOrderViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Dodaj zamowienie</h2>
+
+@using (Html.BeginForm("DodajZamowienie", "Kelner"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.OrderModels.NumerStolika)
+        @Html.DropDownListFor(m => m.OrderModels.NumerStolika, Enumerable.Range(1, 5).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.OrderModels.PotrawaId)
+        @Html.DropDownListFor(m => m.OrderModels.PotrawaId, new SelectList(Model.Potrawy, "Id", "Name"), new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Dodaj</button>
+}
+
+<h2>Lista Zamowien</h2>
+
+
+@using (Html.BeginForm("DostarczonoDoStolika", "Kelner"))
+{
+    <table class="table">
+        <tr>
+            <th>Numer Stolika</th>
+            <th>Do odbioru?</th>
+            <th>Potrawa</th>
+            <th>Dostarcz</th>
+        </tr>
+
+
+
+
+        @foreach (var item in (List<OrderModels>)ViewBag.Ordery)
+        {
+            if (item.CzyDostarczono == false)
+            {
+                <tr>
+                    <td>@item.NumerStolika</td>
+
+                    @if (item.CzyWykonano == false)
+                    {
+                        <td>Nie</td>
+                    }
+                    else
+                    {
+                        <td>Tak</td>
+                    }
+                    <td>@item.Potrawa.Name</td>
+                    @if (item.CzyWykonano == false)
+                    {
+                        <td><button type="button" disabled class="btn btn-danger">Nie Gotowe</button></td>
+                    }
+                    else
+                    {
+                        <td>@Html.ActionLink("Dostarcz", "DostarczonoDoStolika", new { id = item.Id }, new { @class = "btn btn-success" })</td>
+                    }
+
+
+                    @*//<td>@Html.ActionLink($"{customer.Name}", "details", "customers", new{})</td>*@
+                </tr>
+            }
+        }
+
+    </table>
+}
+
+

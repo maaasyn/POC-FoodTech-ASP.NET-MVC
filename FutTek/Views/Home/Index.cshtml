@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div style="padding: 10px 50px">
+    <img class="img-responsive" src="https://scontent-waw1-1.xx.fbcdn.net/v/t1.15752-9/79269404_960306807675314_4804013021854695424_n.png?_nc_cat=108&_nc_ohc=PRX2VSstvkcAQn8gEDBr4Tsg17Ova2O2V-r1a0vbpzxWqTPo8u8r2W1Xw&_nc_ht=scontent-waw1-1.xx&oh=75efc9546b89d87e763d4ba577e4d43d&oe=5EB44CBD" alt="Logo" />
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Kelner</h2>
+        <p>
+            W sekcji kelner, kelner może dodawać zamówienia oraz przeglądać aktualne zamówienia do dostarczenia.
+        </p>
+        <p>@Html.ActionLink("Kelner", "Index", "Kelner", null, new { @class = "btn btn-default" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Kucharz</h2>
+        <p>
+            W sekcji kucharz, kucharz może dodawać wysyłać zamówienia oraz przeglądać aktualne zamówienia.
+        </p>
+        <p>@Html.ActionLink("Kelner", "Index", "Kelner", null, new { @class = "btn btn-default" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Wszyskie Zamowienia</h2>
+        <p>
+            W sekcji tej, mamy wgląd do wszystkich zrealizowanych i nie zrealizowanych zamówień.
+        </p>
+        <p>@Html.ActionLink("Wszystkie Zamowienia", "WszystkieZamowienia", "Home", null, new { @class = "btn btn-default" })</p>
+    </div>
+</div>
